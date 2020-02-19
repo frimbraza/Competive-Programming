@@ -3,14 +3,14 @@ import io
 
 
 class PPMImage:
-    image = ''
-    magic_number = ''
-    width = -1
-    height = -1
-    max_color_value = 0
-    raster = []
 
     def __init__(self, image):
+        self.image = ''
+        self.magic_number = ''
+        self.width = -1
+        self.height = -1
+        self.max_color_value = 0
+        self.raster = []
         if image.endswith(".ppm"):
             self.image = image
             self.readImage()
@@ -47,7 +47,7 @@ class PPMImage:
         return f'{order:08b}'.format(8)
 
     def hideData(self, message):
-        clean_message = message[:-2]
+        clean_message = message
         bytelist = []
         for i in range(len(clean_message)):
             bytelist.append(self.int2bin(ord(clean_message[i])))
@@ -86,7 +86,7 @@ class PPMImage:
             sc = int("".join(s), 2)
             msg.append(chr(sc))
 
-            print(f's:{s} and sc:{sc}, and msg:{chr(sc)}')
+            # print(f's:{s} and sc:{sc}, and msg:{chr(sc)}')
         # todo: clean data after recover
 
         return "".join(msg)
